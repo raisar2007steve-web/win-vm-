@@ -1,14 +1,16 @@
 # Latest CI diagnostics
 
-Run: 44861955323  ·  commit 0205c4267927f0a6d2587e428389d11453f991b4  ·  2026-11-21T03:37:35Z
+Run: 44862337908  ·  commit a1aeed962d53f208990c991462995efab19ae91f  ·  2026-11-21T03:42:32Z
 Device: iPhone 17 Pro Max
 
 ## Build errors
 ```
-/Users/runner/work/win-vm-/win-vm-/NotesApp/App/AppEnvironment.swift:27:33: error: call to main actor-isolated initializer 'init(defaults:)' in a synchronous nonisolated context
+/Users/runner/work/win-vm-/win-vm-/NotesApp/Services/SeedData.swift:13:19: error: call to main actor-isolated instance method 'createFolder(named:symbolName:)' in a synchronous nonisolated context
+/Users/runner/work/win-vm-/win-vm-/NotesApp/Services/SeedData.swift:87:30: error: call to main actor-isolated instance method 'createNote(title:document:folder:tags:now:)' in a synchronous nonisolated context
+/Users/runner/work/win-vm-/win-vm-/NotesApp/Services/SeedData.swift:90:52: error: call to main actor-isolated instance method 'tag(named:)' in a synchronous nonisolated context
+/Users/runner/work/win-vm-/win-vm-/NotesApp/Services/SeedData.swift:92:15: error: call to main actor-isolated instance method 'persist()' in a synchronous nonisolated context
 ```
 
 ## Build warnings
 ```
-warning: The application supports opening files, but doesn't declare whether it supports opening them in place. You can add an LSSupportsOpeningDocumentsInPlace entry or an UISupportsDocumentBrowser entry to your Info.plist to declare support. (in target 'NotesApp' from project 'NotesApp')
 ```
