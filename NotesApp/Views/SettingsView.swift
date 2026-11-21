@@ -53,7 +53,7 @@ struct SettingsView: View {
 
                 if settings.lockEnabled {
                     Picker("Lock After", selection: $settings.lockGrace) {
-                        ForEach(app.settings.lockGraceOptions, id: \.seconds) { option in
+                        ForEach(app.settings.lockGraceOptions) { option in
                             Text(option.label).tag(option.seconds)
                         }
                     }

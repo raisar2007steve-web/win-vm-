@@ -70,7 +70,19 @@ final class AppSettings {
         useLargeText = defaults.bool(forKey: Key.useLargeText)
     }
 
-    var lockGraceOptions: [(label: String, seconds: Double)] {
-        [("Immediately", 0), ("After 1 minute", 60), ("After 5 minutes", 300), ("After 15 minutes", 900)]
+    var lockGraceOptions: [LockGraceOption] {
+        [
+            LockGraceOption(label: "Immediately", seconds: 0),
+            LockGraceOption(label: "After 1 minute", seconds: 60),
+            LockGraceOption(label: "After 5 minutes", seconds: 300),
+            LockGraceOption(label: "After 15 minutes", seconds: 900)
+        ]
     }
+}
+
+struct LockGraceOption: Identifiable, Hashable {
+    let label: String
+    let seconds: Double
+
+    var id: Double { seconds }
 }

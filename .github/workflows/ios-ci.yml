@@ -139,6 +139,10 @@ jobs:
         if: always() && github.event_name == 'push'
         run: |
           set -euo pipefail
+          if [ -z "$(ls -A "$ARTIFACTS/screenshots" 2>/dev/null)" ]; then
+            echo "No screenshots captured; skipping publish."
+            exit 0
+          fi
           mkdir -p docs/ci
           rm -rf docs/ci/screenshots
           cp -R "$ARTIFACTS/screenshots" docs/ci/screenshots 2>/dev/null || mkdir -p docs/ci/screenshots
