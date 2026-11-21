@@ -1,0 +1,137 @@
+Application, 0x1182df980, pid: 19235, label: 'Notes' <App element pid: 19235>
+  Window (Main), 0x1182dfac0, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4411033600.4>
+    Other, 0x1182dfc00, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4459508736.5>
+      Other, 0x1182dfd40, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4460644224.6>
+        Other, 0x1182dfe80, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4411032576.7>
+          Other, 0x1182de940, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4459000960.8>
+            Other, 0x1182dea80, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4459526144.9>
+              Other, 0x1182debc0, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4459526592.10>
+                Other, 0x1182ded00, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4460651264.12>
+                  Other, 0x1182dee40, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4412072704.14>
+                    NavigationBar, 0x1182def80, {{0.0, 62.0}, {440.0, 54.0}}, identifier: 'All Notes' <AX element pid: 19235, elementOrHash.elementID: 4461889024.15>
+                      Button, 0x1182df0c0, {{20.0, 62.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Notes' <AX element pid: 19235, elementOrHash.elementID: 4664554048.18>
+                      StaticText, 0x1182df200, {{20.0, 67.7}, {142.3, 40.7}}, label: 'All Notes' <AX element pid: 19235, elementOrHash.elementID: 4411475712.19>
+                      Button, 0x1182df340, {{314.7, 66.0}, {44.7, 36.0}}, identifier: 'sortMenu', label: 'Sort' <AX element pid: 19235, elementOrHash.elementID: 4652507904.20>
+                      Button, 0x1182df480, {{375.3, 66.0}, {40.7, 36.0}}, identifier: 'newNoteToolbarButton', label: 'New Note' <AX element pid: 19235, elementOrHash.elementID: 4652508544.21>
+                    Other, 0x1182df5c0, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4412073600.16>
+                      Other, 0x1182df700, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4458911872.22>
+                        Other, 0x118300000, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4411477504.24>
+                          Other, 0x118300140, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4458959680.25>
+                            CollectionView, 0x118300280, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4489986048.26>
+                              Other, 0x1183003c0, {{0.0, -1796.0}, {440.0, 4640.0}} <AX element pid: 19235, elementOrHash.elementID: 4665299456.28>
+                              Other, 0x118300500, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4412291968.29>
+                                Other, 0x118300640, {{0.0, 0.0}, {440.0, 170.8}} <AX element pid: 19235, elementOrHash.elementID: 4458873728.45>
+                              Other, 0x118300780, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4412291520.30>
+                              Cell, 0x1183008c0, {{0.0, 116.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4652550656.31>
+                                Other, 0x118300a00, {{0.0, 116.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4654005248.46>
+                                  Other, 0x118300b40, {{0.0, 116.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4458916800.59>
+                                Other, 0x118300c80, {{0.0, 116.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4458915904.47>
+                                  Other, 0x118300dc0, {{0.0, 116.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4410983936.60>
+                                    Other, 0x118300f00, {{0.0, 116.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4459003904.71>
+                                      Button, 0x118301040, {{0.0, 116.0}, {440.0, 146.0}}, identifier: 'noteRow-38F02C41-DBB0-432A-8C38-18901C71F175', label: 'Design review — Notes, in 0s, 21 Nov, ·, Ideas, Goals for this pass: faster capture, calmer typography, and structure that stays out of the way., #design, #product' <AX element pid: 19235, elementOrHash.elementID: 4458880000.77>
+                                        Image, 0x118301180, {{38.0, 141.0}, {8.7, 12.7}}, identifier: 'pin.fill', label: 'Pin' <AX element pid: 19235, elementOrHash.elementID: 4458960576.83>
+                                        StaticText, 0x1183012c0, {{54.7, 137.0}, {181.7, 20.3}}, label: 'Design review — Notes' <AX element pid: 19235, elementOrHash.elementID: 4458961024.84>
+                                        StaticText, 0x118301400, {{370.7, 140.0}, {27.3, 14.3}}, label: 'in 0s' <AX element pid: 19235, elementOrHash.elementID: 4458962368.85>
+                                        StaticText, 0x118301540, {{36.0, 161.3}, {35.7, 13.3}}, label: '21 Nov' <AX element pid: 19235, elementOrHash.elementID: 4458963712.86>
+                                        StaticText, 0x118301680, {{75.7, 161.3}, {3.3, 13.3}}, label: '·' <AX element pid: 19235, elementOrHash.elementID: 4458966848.87>
+                                        Image, 0x1183017c0, {{84.3, 162.7}, {12.3, 10.0}}, identifier: 'folder', label: 'Move' <AX element pid: 19235, elementOrHash.elementID: 4458967744.88>
+                                        StaticText, 0x118301900, {{84.3, 161.3}, {58.0, 13.3}}, label: 'Ideas' <AX element pid: 19235, elementOrHash.elementID: 4458969088.89>
+                                        StaticText, 0x118301a40, {{36.0, 179.7}, {352.3, 38.0}}, label: 'Goals for this pass: faster capture, calmer typography, and structure that stays out of the way.' <AX element pid: 19235, elementOrHash.elementID: 4458970432.90>
+                                        StaticText, 0x118301b80, {{43.0, 225.7}, {43.3, 13.3}}, label: '#design' <AX element pid: 19235, elementOrHash.elementID: 4459001408.91>
+                                        StaticText, 0x118301cc0, {{106.3, 225.7}, {49.7, 13.3}}, label: '#product' <AX element pid: 19235, elementOrHash.elementID: 4459001856.92>
+                                        Image, 0x118301e00, {{170.0, 226.7}, {12.3, 11.7}}, identifier: 'star.fill', label: 'Favorite' <AX element pid: 19235, elementOrHash.elementID: 4459002304.93>
+                                        Image, 0x118301f40, {{410.7, 183.0}, {7.0, 12.0}}, identifier: 'chevron.forward' <AX element pid: 19235, elementOrHash.elementID: 4459003200.94>
+                              Other, 0x118302080, {{36.0, 116.0}, {384.0, 1.0}} <AX element pid: 19235, elementOrHash.elementID: 4665299968.32>
+                              Cell, 0x1183021c0, {{0.0, 262.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4652551936.33>
+                                Other, 0x118302300, {{0.0, 262.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4664347136.48>
+                                  Other, 0x118302440, {{0.0, 262.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4458917696.61>
+                                Other, 0x118302580, {{0.0, 262.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4458917248.49>
+                                  Other, 0x1183026c0, {{0.0, 262.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4410982400.62>
+                                    Other, 0x118302800, {{0.0, 262.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4459007488.72>
+                                      Button, 0x118302940, {{0.0, 262.0}, {440.0, 126.0}}, identifier: 'noteRow-17C0348A-A8B5-467F-8FC7-4F3AC5FA6301', label: 'Call the framer about the print size before Friday., in 0s, 21 Nov, No additional text, #quick' <AX element pid: 19235, elementOrHash.elementID: 4459007040.78>
+                                        StaticText, 0x118302a80, {{36.0, 283.0}, {313.7, 20.3}}, label: 'Call the framer about the print size before Friday.' <AX element pid: 19235, elementOrHash.elementID: 4459004352.95>
+                                        StaticText, 0x118302bc0, {{370.7, 286.0}, {27.3, 14.3}}, label: 'in 0s' <AX element pid: 19235, elementOrHash.elementID: 4459004800.96>
+                                        StaticText, 0x118302d00, {{36.0, 307.3}, {35.7, 13.3}}, label: '21 Nov' <AX element pid: 19235, elementOrHash.elementID: 4459005248.97>
+                                        StaticText, 0x118302e40, {{36.0, 325.7}, {120.7, 18.0}}, label: 'No additional text' <AX element pid: 19235, elementOrHash.elementID: 4459005696.98>
+                                        StaticText, 0x118302f80, {{43.0, 351.7}, {36.3, 13.3}}, label: '#quick' <AX element pid: 19235, elementOrHash.elementID: 4459006144.99>
+                                        Image, 0x1183030c0, {{410.7, 319.0}, {7.0, 12.0}}, identifier: 'chevron.forward' <AX element pid: 19235, elementOrHash.elementID: 4459006592.100>
+                              Other, 0x118303200, {{36.0, 261.0}, {384.0, 1.0}} <AX element pid: 19235, elementOrHash.elementID: 4665300480.34>
+                              Cell, 0x118303340, {{0.0, 388.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4652553216.35>
+                                Other, 0x118303480, {{0.0, 388.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4664349696.50>
+                                  Other, 0x1183035c0, {{0.0, 388.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4458919040.63>
+                                Other, 0x118303700, {{0.0, 388.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4458918144.51>
+                                  Other, 0x118303840, {{0.0, 388.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4410988544.64>
+                                    Other, 0x118303980, {{0.0, 388.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4459013312.73>
+                                      Button, 0x118303ac0, {{0.0, 388.0}, {440.0, 126.0}}, identifier: 'noteRow-550F26A2-A0EC-4371-BC0D-CD0DFA198E9A', label: 'Reading list, in 0s, 21 Nov, ·, Ideas, Thinking in Systems — Donella Meadows, #books' <AX element pid: 19235, elementOrHash.elementID: 4459012864.79>
+                                        StaticText, 0x118303c00, {{36.0, 409.0}, {92.7, 20.3}}, label: 'Reading list' <AX element pid: 19235, elementOrHash.elementID: 4459007936.101>
+                                        StaticText, 0x118303d40, {{370.7, 412.0}, {27.3, 14.3}}, label: 'in 0s' <AX element pid: 19235, elementOrHash.elementID: 4459008384.102>
+                                        StaticText, 0x118303e80, {{36.0, 433.3}, {35.7, 13.3}}, label: '21 Nov' <AX element pid: 19235, elementOrHash.elementID: 4459009280.103>
+                                        StaticText, 0x118304000, {{75.7, 433.3}, {3.3, 13.3}}, label: '·' <AX element pid: 19235, elementOrHash.elementID: 4459009728.104>
+                                        Image, 0x118304140, {{84.3, 434.7}, {12.3, 10.0}}, identifier: 'folder', label: 'Move' <AX element pid: 19235, elementOrHash.elementID: 4459010176.105>
+                                        StaticText, 0x118304280, {{84.3, 433.3}, {58.0, 13.3}}, label: 'Ideas' <AX element pid: 19235, elementOrHash.elementID: 4459010624.106>
+                                        StaticText, 0x1183043c0, {{36.0, 451.7}, {278.7, 18.0}}, label: 'Thinking in Systems — Donella Meadows' <AX element pid: 19235, elementOrHash.elementID: 4459011520.107>
+                                        StaticText, 0x118304500, {{43.0, 477.7}, {39.7, 13.3}}, label: '#books' <AX element pid: 19235, elementOrHash.elementID: 4459011968.108>
+                                        Image, 0x118304640, {{410.7, 445.0}, {7.0, 12.0}}, identifier: 'chevron.forward' <AX element pid: 19235, elementOrHash.elementID: 4459012416.109>
+                              Other, 0x118304780, {{36.0, 387.0}, {384.0, 1.0}} <AX element pid: 19235, elementOrHash.elementID: 4665300992.36>
+                              Cell, 0x1183048c0, {{0.0, 514.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4652554496.37>
+                                Other, 0x118304a00, {{0.0, 514.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4664353792.52>
+                                  Other, 0x118304b40, {{0.0, 514.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4458920384.65>
+                                Other, 0x118304c80, {{0.0, 514.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4458919488.53>
+                                  Other, 0x118304dc0, {{0.0, 514.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4410990080.66>
+                                    Other, 0x118304f00, {{0.0, 514.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4459036672.74>
+                                      Button, 0x118305040, {{0.0, 514.0}, {440.0, 146.0}}, identifier: 'noteRow-92BC293B-50DC-4FF3-8EED-706072714247', label: 'Lisbon trip notes, in 0s, 21 Nov, ·, Personal, Three days, carry-on only. Stay near Alfama so the mornings are walkable., #travel' <AX element pid: 19235, elementOrHash.elementID: 4459019136.80>
+                                        StaticText, 0x118305180, {{36.0, 535.0}, {133.3, 20.3}}, label: 'Lisbon trip notes' <AX element pid: 19235, elementOrHash.elementID: 4459014208.110>
+                                        StaticText, 0x1183052c0, {{370.7, 538.0}, {27.3, 14.3}}, label: 'in 0s' <AX element pid: 19235, elementOrHash.elementID: 4459014656.111>
+                                        StaticText, 0x118305400, {{36.0, 559.3}, {35.7, 13.3}}, label: '21 Nov' <AX element pid: 19235, elementOrHash.elementID: 4459015104.112>
+                                        StaticText, 0x118305540, {{75.7, 559.3}, {3.3, 13.3}}, label: '·' <AX element pid: 19235, elementOrHash.elementID: 4459015552.113>
+                                        Image, 0x118305680, {{84.3, 560.7}, {12.3, 10.0}}, identifier: 'folder', label: 'Move' <AX element pid: 19235, elementOrHash.elementID: 4459016448.114>
+                                        StaticText, 0x1183057c0, {{84.3, 559.3}, {75.0, 13.3}}, label: 'Personal' <AX element pid: 19235, elementOrHash.elementID: 4459016896.115>
+                                        StaticText, 0x118305900, {{36.0, 577.7}, {349.3, 38.0}}, label: 'Three days, carry-on only. Stay near Alfama so the mornings are walkable.' <AX element pid: 19235, elementOrHash.elementID: 4459017344.116>
+                                        StaticText, 0x118305a40, {{43.0, 623.7}, {37.7, 13.3}}, label: '#travel' <AX element pid: 19235, elementOrHash.elementID: 4459017792.117>
+                                        Image, 0x118305b80, {{410.7, 581.0}, {7.0, 12.0}}, identifier: 'chevron.forward' <AX element pid: 19235, elementOrHash.elementID: 4459018688.118>
+                              Other, 0x118305cc0, {{36.0, 513.0}, {384.0, 1.0}} <AX element pid: 19235, elementOrHash.elementID: 4665301504.38>
+                              Cell, 0x118305e00, {{0.0, 660.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4652555776.39>
+                                Other, 0x118305f40, {{0.0, 660.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4664357376.54>
+                                  Other, 0x118306080, {{0.0, 660.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4458938368.67>
+                                Other, 0x1183061c0, {{0.0, 660.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4458921280.55>
+                                  Other, 0x118306300, {{0.0, 660.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4410991616.68>
+                                    Other, 0x118306440, {{0.0, 660.0}, {440.0, 126.0}} <AX element pid: 19235, elementOrHash.elementID: 4459043392.75>
+                                      Button, 0x118306580, {{0.0, 660.0}, {440.0, 126.0}}, identifier: 'noteRow-8D4A4F58-AE51-49A9-8D03-5563DB8C53CA', label: 'Groceries, in 0s, 21 Nov, ·, Personal, Sourdough, #home' <AX element pid: 19235, elementOrHash.elementID: 4459042944.81>
+                                        StaticText, 0x1183066c0, {{36.0, 681.0}, {77.3, 20.3}}, label: 'Groceries' <AX element pid: 19235, elementOrHash.elementID: 4459037568.119>
+                                        StaticText, 0x118306800, {{370.7, 684.0}, {27.3, 14.3}}, label: 'in 0s' <AX element pid: 19235, elementOrHash.elementID: 4459038016.120>
+                                        StaticText, 0x118306940, {{36.0, 705.3}, {35.7, 13.3}}, label: '21 Nov' <AX element pid: 19235, elementOrHash.elementID: 4459038912.121>
+                                        StaticText, 0x118306a80, {{75.7, 705.3}, {3.3, 13.3}}, label: '·' <AX element pid: 19235, elementOrHash.elementID: 4459039360.122>
+                                        Image, 0x118306bc0, {{84.3, 706.7}, {12.3, 10.0}}, identifier: 'folder', label: 'Move' <AX element pid: 19235, elementOrHash.elementID: 4459039808.123>
+                                        StaticText, 0x118306d00, {{84.3, 705.3}, {75.0, 13.3}}, label: 'Personal' <AX element pid: 19235, elementOrHash.elementID: 4459040256.124>
+                                        StaticText, 0x118306e40, {{36.0, 723.7}, {75.7, 18.0}}, label: 'Sourdough' <AX element pid: 19235, elementOrHash.elementID: 4459040704.125>
+                                        StaticText, 0x118306f80, {{43.0, 749.7}, {37.0, 13.3}}, label: '#home' <AX element pid: 19235, elementOrHash.elementID: 4459041600.126>
+                                        Image, 0x1183070c0, {{410.7, 717.0}, {7.0, 12.0}}, identifier: 'chevron.forward' <AX element pid: 19235, elementOrHash.elementID: 4459042496.127>
+                              Other, 0x118307200, {{36.0, 659.0}, {384.0, 1.0}} <AX element pid: 19235, elementOrHash.elementID: 4665302016.40>
+                              Cell, 0x118307340, {{0.0, 786.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4652557056.41>
+                                Other, 0x118307480, {{0.0, 786.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4665295872.56>
+                                  Other, 0x1183075c0, {{0.0, 786.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4458939712.69>
+                                Other, 0x118307700, {{0.0, 786.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4458938816.57>
+                                  Other, 0x118307840, {{0.0, 786.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4410993152.70>
+                                    Other, 0x118307980, {{0.0, 786.0}, {440.0, 146.0}} <AX element pid: 19235, elementOrHash.elementID: 4459049216.76>
+                                      Button, 0x118307ac0, {{0.0, 786.0}, {440.0, 146.0}}, identifier: 'noteRow-92B6D45A-3BA9-4C65-82BF-80FB25A332A1', label: 'Weekly standup, in 0s, 21 Nov, ·, Work, Shipped the attachment pipeline with downsampling. Photos are stored at 2048px, thumbnails at 400px., #work' <AX element pid: 19235, elementOrHash.elementID: 4459048768.82>
+                                        StaticText, 0x118307c00, {{36.0, 807.0}, {127.3, 20.3}}, label: 'Weekly standup' <AX element pid: 19235, elementOrHash.elementID: 4459043840.128>
+                                        StaticText, 0x118307d40, {{370.7, 810.0}, {27.3, 14.3}}, label: 'in 0s' <AX element pid: 19235, elementOrHash.elementID: 4459044288.129>
+                                        StaticText, 0x118307e80, {{36.0, 831.3}, {35.7, 13.3}}, label: '21 Nov' <AX element pid: 19235, elementOrHash.elementID: 4459044736.130>
+                                        StaticText, 0x11830c000, {{75.7, 831.3}, {3.3, 13.3}}, label: '·' <AX element pid: 19235, elementOrHash.elementID: 4459045184.131>
+                                        Image, 0x11830c140, {{84.3, 832.7}, {12.3, 10.0}}, identifier: 'folder', label: 'Move' <AX element pid: 19235, elementOrHash.elementID: 4459045632.132>
+                                        StaticText, 0x11830c280, {{84.3, 831.3}, {57.0, 13.3}}, label: 'Work' <AX element pid: 19235, elementOrHash.elementID: 4459046080.133>
+                                        StaticText, 0x11830c3c0, {{36.0, 849.7}, {358.0, 38.0}}, label: 'Shipped the attachment pipeline with downsampling. Photos are stored at 2048px, thumbnails at 400px.' <AX element pid: 19235, elementOrHash.elementID: 4459046528.134>
+                                        StaticText, 0x11830c500, {{43.0, 895.7}, {33.3, 13.3}}, label: '#work' <AX element pid: 19235, elementOrHash.elementID: 4459046976.135>
+                                        Image, 0x11830c640, {{90.3, 896.7}, {12.3, 11.7}}, identifier: 'star.fill', label: 'Favorite' <AX element pid: 19235, elementOrHash.elementID: 4459047424.136>
+                                        Image, 0x11830c780, {{410.7, 853.0}, {7.0, 12.0}}, identifier: 'chevron.forward' <AX element pid: 19235, elementOrHash.elementID: 4459047872.137>
+                              Other, 0x11830c8c0, {{36.0, 785.0}, {384.0, 1.0}} <AX element pid: 19235, elementOrHash.elementID: 4665302528.42>
+                              Other, 0x11830ca00, {{36.0, 931.0}, {384.0, 1.0}} <AX element pid: 19235, elementOrHash.elementID: 4665303040.43>
+                              Other, 0x11830cb40, {{407.0, 116.0}, {30.0, 778.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 19235, elementOrHash.elementID: 4654001152.44>
+                                Other, 0x11830cc80, {{434.0, 890.0}, {3.0, 7.0}} <AX element pid: 19235, elementOrHash.elementID: 4458912320.58>
+                              Other, 0x11830cdc0, {{407.0, 116.0}, {30.0, 778.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 19235, elementOrHash.elementID: 4654001152.44>
+                                Other, 0x11830cf00, {{434.0, 890.0}, {3.0, 7.0}} <AX element pid: 19235, elementOrHash.elementID: 4458912320.58>
+                            Button, 0x11830d040, {{364.0, 846.0}, {56.0, 56.0}}, identifier: 'newNoteButton', label: 'New Note' <AX element pid: 19235, elementOrHash.elementID: 4458959232.27>
+                    Other, 0x11830d180, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4491024384.17>
+                      Other, 0x11830d2c0, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4491026432.23>
+              Other, 0x11830d400, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4459527040.11>
+                Other, 0x11830d540, {{0.0, 0.0}, {440.0, 956.0}} <AX element pid: 19235, elementOrHash.elementID: 4459527488.13>

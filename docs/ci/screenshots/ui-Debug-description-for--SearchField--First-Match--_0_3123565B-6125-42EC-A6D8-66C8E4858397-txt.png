@@ -1,0 +1,4 @@
+Query chain:
+ →Find: Target Application 'com.raisar2007steve.NotesApp'
+  ↪︎Find: Descendants matching type SearchField
+    ↪︎Find: First Match

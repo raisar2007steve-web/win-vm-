@@ -1,0 +1,5 @@
+Query chain:
+ →Find: Target Application 'com.raisar2007steve.NotesApp'
+  ↪︎Find: Descendants matching type StaticText
+    ↪︎Find: Elements matching predicate '"Weekly standup v2" IN identifiers'
+      ↪︎Find: First Match
