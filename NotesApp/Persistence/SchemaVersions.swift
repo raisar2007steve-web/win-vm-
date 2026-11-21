@@ -36,6 +36,21 @@ enum ModelContainerFactory {
     ) throws -> (container: ModelContainer, mode: StorageMode) {
         let schema = Schema(versionedSchema: NotesSchemaV1.self)
 
+        if !inMemory {
+            // On a fresh install Application Support may not exist yet, and SwiftData
+            // will fail to create its store there. Creating it up front keeps the app
+            // on disk instead of silently falling back to an in-memory store.
+            if let applicationSupport = FileManager.default.urls(
+                for: .applicationSupportDirectory,
+                in: .userDomainMask
+            ).first {
+                try? FileManager.default.createDirectory(
+                    at: applicationSupport,
+                    withIntermediateDirectories: true
+                )
+            }
+        }
+
         if preferCloudKit && !inMemory {
             let cloudConfiguration = ModelConfiguration(
                 schema: schema,

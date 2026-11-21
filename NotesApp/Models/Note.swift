@@ -53,8 +53,16 @@ final class Note {
     }
 
     var previewText: String {
-        let body = document.preview
-        return body.isEmpty ? "No additional text" : String(body.prefix(240))
+        let document = self.document
+        let displayTitle = self.displayTitle
+        // The first block is usually the heading already shown as the title, so
+        // skip anything that duplicates it before choosing a preview line.
+        let body = document.blocks
+            .filter { $0.kind.isTextual }
+            .map { $0.text.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .first { !$0.isEmpty && $0 != displayTitle && $0 != document.firstLine }
+        guard let body else { return "No additional text" }
+        return String(body.prefix(240))
     }
 
     var wordCount: Int {

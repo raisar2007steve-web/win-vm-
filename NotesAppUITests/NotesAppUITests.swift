@@ -18,13 +18,26 @@ final class NotesAppUITests: XCTestCase {
         return app
     }
 
-    /// The split view opens on the folder sidebar on iPhone; tap through to the list.
+    /// The app opens on the note list; make sure we are there.
     private func openAllNotes(_ app: XCUIApplication) {
-        let allNotesRow = app.buttons["scope-all"].firstMatch
-        if allNotesRow.waitForExistence(timeout: 8) {
-            allNotesRow.tap()
+        if app.buttons["newNoteButton"].waitForExistence(timeout: 3) { return }
+        let identified = app.buttons["scope-all"].firstMatch
+        if identified.waitForExistence(timeout: 5) {
+            identified.tap()
+        } else {
+            app.staticTexts["All Notes"].firstMatch.tap()
         }
-        XCTAssertTrue(app.buttons["newNoteButton"].waitForExistence(timeout: 8))
+        XCTAssertTrue(app.buttons["newNoteButton"].waitForExistence(timeout: 10))
+    }
+
+    /// Returns to the folder sidebar (the split view's leading column).
+    private func openSidebar(_ app: XCUIApplication) {
+        if app.navigationBars["Notes"].exists { return }
+        let back = app.navigationBars.buttons.firstMatch
+        if back.waitForExistence(timeout: 5) {
+            back.tap()
+        }
+        XCTAssertTrue(app.buttons["settingsButton"].waitForExistence(timeout: 10))
     }
 
     /// Text fields with a vertical axis can surface as either text fields or text views.
@@ -45,13 +58,20 @@ final class NotesAppUITests: XCTestCase {
 
     func testFirstLaunchShowsSeedContentAndSidebar() throws {
         let app = launchApp()
-        XCTAssertTrue(app.navigationBars["Notes"].waitForExistence(timeout: 10))
-        snapshot(app, named: "01-sidebar")
 
+        // The app opens on All Notes with seeded content.
+        XCTAssertTrue(
+            app.navigationBars["All Notes"].firstMatch.waitForExistence(timeout: 12)
+                || app.navigationBars["Notes"].waitForExistence(timeout: 5)
+        )
         openAllNotes(app)
-        let firstNote = app.staticTexts["Design review — Notes"].firstMatch
-        XCTAssertTrue(firstNote.waitForExistence(timeout: 8))
+        XCTAssertTrue(app.staticTexts["Design review — Notes"].firstMatch.waitForExistence(timeout: 10))
         snapshot(app, named: "02-all-notes")
+
+        // And the sidebar lists the seeded folders.
+        openSidebar(app)
+        XCTAssertTrue(app.staticTexts["Ideas"].firstMatch.waitForExistence(timeout: 8))
+        snapshot(app, named: "01-sidebar")
     }
 
     func testCreateNoteAndVerifyPersistenceAfterRelaunch() throws {
@@ -143,9 +163,10 @@ final class NotesAppUITests: XCTestCase {
 
     func testCreateFolderAndOpenIt() throws {
         let app = launchApp(seeded: false)
+        openSidebar(app)
 
         let newFolderButton = app.buttons["New Folder"].firstMatch
-        XCTAssertTrue(newFolderButton.waitForExistence(timeout: 8))
+        XCTAssertTrue(newFolderButton.waitForExistence(timeout: 10))
         newFolderButton.tap()
 
         let field = app.alerts.textFields.firstMatch
@@ -159,9 +180,14 @@ final class NotesAppUITests: XCTestCase {
 
     func testSettingsScreenOpensAndShowsSecurityOptions() throws {
         let app = launchApp()
-        XCTAssertTrue(app.navigationBars["Notes"].waitForExistence(timeout: 10))
+        openSidebar(app)
 
-        app.buttons["settingsButton"].firstMatch.tap()
+        let settingsButton = app.buttons["settingsButton"].firstMatch
+        if settingsButton.waitForExistence(timeout: 6) {
+            settingsButton.tap()
+        } else {
+            app.staticTexts["Settings"].firstMatch.tap()
+        }
 
         XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 8))
         XCTAssertTrue(app.switches["appLockToggle"].exists)

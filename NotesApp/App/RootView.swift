@@ -22,9 +22,6 @@ struct RootView: View {
                         .navigationDestination(for: Note.self) { note in
                             NoteEditorView(note: note)
                         }
-                        .navigationDestination(for: SettingsRoute.self) { _ in
-                            SettingsView()
-                        }
                 }
                 .id(scope.id)
             }
@@ -108,5 +105,3 @@ struct RootView: View {
     }
 }
 
-/// Route used to push settings in the detail column on iPad / regular width.
-enum SettingsRoute: Hashable {}

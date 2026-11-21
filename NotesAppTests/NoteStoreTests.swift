@@ -3,20 +3,43 @@ import SwiftData
 import UIKit
 @testable import NotesApp
 
+/// Holds the store, its container and its attachment directory for a test.
+///
+/// The container must stay alive: `ModelContext` does not retain the container it
+/// came from, and dropping it invalidates every model object obtained through it.
+@MainActor
+final class StoreHarness {
+    let container: ModelContainer
+    let store: NoteStore
+    let attachments: AttachmentStore
+    let root: URL
+
+    init() throws {
+        let made = try ModelContainerFactory.make(inMemory: true, preferCloudKit: false)
+        container = made.container
+        root = FileManager.default.temporaryDirectory
+            .appendingPathComponent("NotesAppTests-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        attachments = AttachmentStore(root: root)
+        store = NoteStore(context: container.mainContext, attachmentStore: attachments)
+    }
+}
+
 @MainActor
 final class NoteStoreTests: XCTestCase {
 
-    private func makeStore() throws -> (NoteStore, ModelContainer, AttachmentStore) {
-        let container = try ModelContainerFactory.make(inMemory: true, preferCloudKit: false).container
-        let root = FileManager.default.temporaryDirectory
-            .appendingPathComponent("NotesAppTests-\(UUID().uuidString)", isDirectory: true)
-        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
-        let attachments = AttachmentStore(root: root)
-        return (NoteStore(context: container.mainContext, attachmentStore: attachments), container, attachments)
+    private var harness: StoreHarness!
+    private var store: NoteStore { harness.store }
+
+    override func setUpWithError() throws {
+        harness = try StoreHarness()
+    }
+
+    override func tearDownWithError() throws {
+        harness = nil
     }
 
     func testCreateNoteSetsTimestampsAndContent() throws {
-        let (store, _, _) = try makeStore()
         let now = Date()
         let document = NoteDocument(blocks: [NoteBlock(kind: .heading1, text: "Hello")])
         let note = store.createNote(title: "Greeting", document: document, now: now)
@@ -29,7 +52,6 @@ final class NoteStoreTests: XCTestCase {
     }
 
     func testEditUpdatesTimestampAndSearchText() throws {
-        let (store, _, _) = try makeStore()
         let note = store.createNote(title: "Draft", document: NoteDocument(blocks: [NoteBlock(text: "alpha")]))
         let originalUpdated = note.updatedAt
 
@@ -48,7 +70,6 @@ final class NoteStoreTests: XCTestCase {
     }
 
     func testAutosaveCanBeDisabledForTests() throws {
-        let (store, _, _) = try makeStore()
         store.autosaves = false
         let note = store.createNote(title: "Unsaved", document: NoteDocument(blocks: [NoteBlock(text: "x")]))
         store.applyEdit(to: note, title: "Unsaved 2", document: NoteDocument(blocks: [NoteBlock(text: "y")]))
@@ -57,7 +78,6 @@ final class NoteStoreTests: XCTestCase {
     }
 
     func testSoftDeleteAndRestore() throws {
-        let (store, _, _) = try makeStore()
         let note = store.createNote(title: "Temp", document: NoteDocument())
 
         store.softDelete(note)
@@ -72,20 +92,18 @@ final class NoteStoreTests: XCTestCase {
     }
 
     func testPermanentDeleteRemovesAttachmentFiles() throws {
-        let (store, _, attachments) = try makeStore()
         let note = store.createNote(title: "With image", document: NoteDocument())
         let data = Self.makeImageData()
         let attachment = try store.attachImage(data: data, to: note)
-        XCTAssertTrue(attachments.exists(attachment.fileName))
+        XCTAssertTrue(harness.attachments.exists(attachment.fileName))
 
         store.permanentlyDelete(note)
 
-        XCTAssertFalse(attachments.exists(attachment.fileName))
+        XCTAssertFalse(harness.attachments.exists(attachment.fileName))
         XCTAssertEqual(store.fetchAllNotes().count, 0)
     }
 
     func testDuplicateCopiesBlocksAndTitle() throws {
-        let (store, _, _) = try makeStore()
         let note = store.createNote(
             title: "Original",
             document: NoteDocument(blocks: [NoteBlock(text: "one"), NoteBlock(text: "two")])
@@ -99,7 +117,6 @@ final class NoteStoreTests: XCTestCase {
     }
 
     func testFlagToggles() throws {
-        let (store, _, _) = try makeStore()
         let note = store.createNote(title: "Flags", document: NoteDocument())
 
         store.togglePin(note)
@@ -114,7 +131,6 @@ final class NoteStoreTests: XCTestCase {
     }
 
     func testFoldersAndMove() throws {
-        let (store, _, _) = try makeStore()
         let folder = store.createFolder(named: "Work")
         let note = store.createNote(title: "Task", document: NoteDocument())
 
@@ -131,7 +147,6 @@ final class NoteStoreTests: XCTestCase {
         XCTAssertEqual(NoteStore.normalizedTag("  #Work Items "), "Work-Items")
         XCTAssertEqual(NoteStore.normalizedTag(""), "")
 
-        let (store, _, _) = try makeStore()
         let note = store.createNote(title: "Tagged", document: NoteDocument())
         guard let tag = store.tag(named: "Travel") else {
             return XCTFail("Expected a tag")
@@ -148,7 +163,6 @@ final class NoteStoreTests: XCTestCase {
     }
 
     func testEmptyTrashRemovesDeletedNotesOnly() throws {
-        let (store, _, _) = try makeStore()
         let keep = store.createNote(title: "Keep", document: NoteDocument())
         let bin = store.createNote(title: "Bin", document: NoteDocument())
         store.softDelete(bin)
@@ -161,7 +175,6 @@ final class NoteStoreTests: XCTestCase {
     }
 
     func testSeedDataCreatesNotesAndFolders() throws {
-        let (store, _, _) = try makeStore()
         let count = SeedData.populate(store)
 
         XCTAssertEqual(store.fetchAllNotes().count, count)
@@ -171,13 +184,23 @@ final class NoteStoreTests: XCTestCase {
     }
 
     func testLargeDocumentStaysWorkable() throws {
-        let (store, _, _) = try makeStore()
         let document = SeedData.stressDocument(words: 2_000)
         let note = store.createNote(title: "Large", document: document)
 
         XCTAssertGreaterThan(NoteBodyCodec.decode(note.bodyJSON).blocks.count, 40)
         XCTAssertGreaterThan(note.wordCount, 1_000)
         XCTAssertFalse(note.searchText.isEmpty)
+    }
+
+    func testPreviewTextDoesNotDuplicateTheTitle() throws {
+        let note = store.createNote(
+            title: "Groceries",
+            document: NoteDocument(blocks: [
+                NoteBlock(kind: .heading1, text: "Groceries"),
+                NoteBlock(kind: .paragraph, text: "Sourdough and lemons")
+            ])
+        )
+        XCTAssertEqual(note.previewText, "Sourdough and lemons")
     }
 
     static func makeImageData() -> Data {

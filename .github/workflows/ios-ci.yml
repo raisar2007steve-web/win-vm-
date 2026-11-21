@@ -153,6 +153,16 @@ jobs:
             grep -E "(^|[[:space:]])error: " "$ARTIFACTS/build.log" 2>/dev/null | head -n 120 || true
             echo '```'
             echo
+            echo '## Unit test summary'
+            echo '```'
+            grep -E "Executed [0-9]+ tests|Test Case .* failed" "$ARTIFACTS/unit-tests.log" 2>/dev/null | tail -n 30 || true
+            echo '```'
+            echo
+            echo '## UI test summary'
+            echo '```'
+            grep -E "Executed [0-9]+ tests|Test Case .* failed" "$ARTIFACTS/ui-tests.log" 2>/dev/null | tail -n 30 || true
+            echo '```'
+            echo
             echo '## Build warnings'
             echo '```'
             grep -E "warning: " "$ARTIFACTS/build.log" 2>/dev/null | head -n 40 || true
