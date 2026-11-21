@@ -135,25 +135,45 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
-      - name: Publish screenshots to docs/ci
+      - name: Publish diagnostics and screenshots to docs/ci
         if: always() && github.event_name == 'push'
         run: |
           set -euo pipefail
-          if [ -z "$(ls -A "$ARTIFACTS/screenshots" 2>/dev/null)" ]; then
-            echo "No screenshots captured; skipping publish."
-            exit 0
+          mkdir -p docs/ci/logs
+
+          # Compact diagnostics so the run is reviewable without downloading artifacts.
+          {
+            echo "# Latest CI diagnostics"
+            echo
+            echo "Run: ${GITHUB_RUN_ID}  ·  commit ${GITHUB_SHA}  ·  $(date -u +%FT%TZ)"
+            echo "Device: ${SIM_NAME:-unknown}"
+            echo
+            echo '## Build errors'
+            echo '```'
+            grep -E "(^|[[:space:]])error: " "$ARTIFACTS/build.log" 2>/dev/null | head -n 120 || true
+            echo '```'
+            echo
+            echo '## Build warnings'
+            echo '```'
+            grep -E "warning: " "$ARTIFACTS/build.log" 2>/dev/null | head -n 40 || true
+            echo '```'
+          } > docs/ci/logs/diagnostics.md
+
+          if [ -n "$(ls -A "$ARTIFACTS/screenshots" 2>/dev/null)" ]; then
+            rm -rf docs/ci/screenshots
+            cp -R "$ARTIFACTS/screenshots" docs/ci/screenshots
+            cp "$ARTIFACTS/index.html" docs/ci/index.html 2>/dev/null || true
+          else
+            echo "No screenshots captured this run."
           fi
-          mkdir -p docs/ci
-          rm -rf docs/ci/screenshots
-          cp -R "$ARTIFACTS/screenshots" docs/ci/screenshots 2>/dev/null || mkdir -p docs/ci/screenshots
-          cp "$ARTIFACTS/index.html" docs/ci/index.html 2>/dev/null || true
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/ci
           if git diff --cached --quiet; then
-            echo "No screenshot changes to publish."
+            echo "Nothing to publish."
           else
-            git commit -m "ci: update simulator test report and screenshots [skip ci]"
+            git commit -m "ci: publish simulator screenshots and diagnostics [skip ci]"
             git push
           fi
 
