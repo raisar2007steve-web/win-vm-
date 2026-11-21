@@ -1,0 +1,30 @@
+# Xcode
+build/
+DerivedData/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcresult
+*.hmap
+*.ipa
+*.dSYM.zip
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+
+# CI output
+artifacts/
+ci-results/
+screenshots/*.png
+
+# macOS
+.DS_Store
+
+# Secrets / personal data
+Secrets/
+*.p12
+*.mobileprovision
+.env
+.env.*

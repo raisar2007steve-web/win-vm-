@@ -1,0 +1,162 @@
+name: iOS CI
+
+on:
+  push:
+    branches:
+      - main
+      - "freebuff/**"
+      - "feature/**"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      run_ui_tests:
+        description: "Run UI tests (slower, produces screenshots)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ios-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build · Unit · UI
+    runs-on: macos-latest
+    timeout-minutes: 90
+    env:
+      PROJECT: NotesApp.xcodeproj
+      SCHEME: NotesApp
+      BUNDLE_ID: com.raisar2007steve.NotesApp
+      ARTIFACTS: ci-artifacts
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode toolchain
+        run: bash scripts/ci/select_xcode.sh
+
+      - name: Report environment
+        run: |
+          echo "### Toolchain" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          xcodebuild -version >> "$GITHUB_STEP_SUMMARY" 2>&1
+          swift --version >> "$GITHUB_STEP_SUMMARY" 2>&1
+          echo "iOS SDK: $(xcrun --sdk iphonesimulator --show-sdk-version)" >> "$GITHUB_STEP_SUMMARY"
+          echo "macOS: $(sw_vers -productVersion)" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Pick an iPhone simulator
+        run: |
+          python3 scripts/ci/pick_simulator.py | tee simulator.env
+          SIM_UDID=$(grep '^SIM_UDID=' simulator.env | cut -d= -f2-)
+          SIM_NAME=$(grep '^SIM_NAME=' simulator.env | cut -d= -f2-)
+          DESTINATION=$(grep '^DESTINATION=' simulator.env | cut -d= -f2-)
+          echo "SIM_UDID=$SIM_UDID" >> "$GITHUB_ENV"
+          echo "SIM_NAME=$SIM_NAME" >> "$GITHUB_ENV"
+          echo "DESTINATION=$DESTINATION" >> "$GITHUB_ENV"
+          echo "Running on **$SIM_NAME** ($SIM_UDID)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Build for testing
+        id: build
+        run: |
+          set -o pipefail
+          mkdir -p "$ARTIFACTS"
+          xcodebuild build-for-testing \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
+            -destination "$DESTINATION" \
+            -derivedDataPath DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            2>&1 | tee "$ARTIFACTS/build.log" | tail -n 40
+
+      - name: Run unit tests
+        id: unit
+        if: steps.build.outcome == 'success'
+        run: |
+          set -o pipefail
+          rm -rf TestResults && mkdir -p TestResults
+          xcodebuild test-without-building \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
+            -destination "$DESTINATION" \
+            -derivedDataPath DerivedData \
+            -only-testing:NotesAppTests \
+            -resultBundlePath TestResults/unit.xcresult \
+            2>&1 | tee "$ARTIFACTS/unit-tests.log" | tail -n 30
+
+      - name: Run UI tests
+        id: ui
+        if: steps.build.outcome == 'success' && (github.event_name != 'workflow_dispatch' || inputs.run_ui_tests)
+        run: |
+          set -o pipefail
+          self_check=$?
+          xcodebuild test-without-building \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
+            -destination "$DESTINATION" \
+            -derivedDataPath DerivedData \
+            -only-testing:NotesAppUITests \
+            -resultBundlePath TestResults/ui.xcresult \
+            2>&1 | tee "$ARTIFACTS/ui-tests.log" | tail -n 40
+
+      - name: Capture app screenshots from the simulator
+        if: always() && steps.build.outcome == 'success'
+        run: bash scripts/ci/capture_screenshots.sh "$SIM_UDID" "$ARTIFACTS/screenshots" || true
+
+      - name: Export screenshots attached by UI tests
+        if: always()
+        run: python3 scripts/ci/collect_xcresult_screenshots.py TestResults/ui.xcresult "$ARTIFACTS/screenshots" || true
+
+      - name: Build the visual test report
+        if: always()
+        run: python3 scripts/ci/make_gallery.py "$ARTIFACTS/screenshots" "$ARTIFACTS/index.html" || true
+
+      - name: Write CI summary
+        if: always()
+        run: |
+          python3 scripts/ci/summary.py \
+            --unit "${{ steps.unit.outcome }}" \
+            --ui "${{ steps.ui.outcome }}" \
+            --build "${{ steps.build.outcome }}" \
+            --device "$SIM_NAME" \
+            --artifacts "$ARTIFACTS" >> "$GITHUB_STEP_SUMMARY" 2>&1 || true
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ci-artifacts
+          path: ci-artifacts
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish screenshots to docs/ci
+        if: always() && github.event_name == 'push'
+        run: |
+          set -euo pipefail
+          mkdir -p docs/ci
+          rm -rf docs/ci/screenshots
+          cp -R "$ARTIFACTS/screenshots" docs/ci/screenshots 2>/dev/null || mkdir -p docs/ci/screenshots
+          cp "$ARTIFACTS/index.html" docs/ci/index.html 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/ci
+          if git diff --cached --quiet; then
+            echo "No screenshot changes to publish."
+          else
+            git commit -m "ci: update simulator test report and screenshots [skip ci]"
+            git push
+          fi
+
+      - name: Fail the job if a test step failed
+        if: always()
+        run: |
+          if [ "${{ steps.build.outcome }}" != "success" ]; then echo "Build failed"; exit 1; fi
+          if [ "${{ steps.unit.outcome }}" != "success" ]; then echo "Unit tests failed"; exit 1; fi
+          if [ "${{ steps.ui.outcome }}" == "failure" ]; then echo "UI tests failed"; exit 1; fi
+          echo "All executed steps passed."
