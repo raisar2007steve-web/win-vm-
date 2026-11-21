@@ -24,9 +24,10 @@ final class AppEnvironment {
     init(
         container: ModelContainer,
         storageMode: ModelContainerFactory.StorageMode,
-        settings: AppSettings = AppSettings(),
+        settings: AppSettings? = nil,
         attachmentStore: AttachmentStore = .shared
     ) {
+        let settings = settings ?? AppSettings()
         self.container = container
         self.storageMode = storageMode
         self.settings = settings
