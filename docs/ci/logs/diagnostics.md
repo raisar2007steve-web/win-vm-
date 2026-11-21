@@ -1,16 +1,28 @@
 # Latest CI diagnostics
 
-Run: 44862337908  ·  commit a1aeed962d53f208990c991462995efab19ae91f  ·  2026-11-21T03:42:32Z
+Run: 44862756989  ·  commit 57874b93b6a41b44794afda2db6d33b33cd4363e  ·  2026-11-21T03:59:19Z
 Device: iPhone 17 Pro Max
 
 ## Build errors
 ```
-/Users/runner/work/win-vm-/win-vm-/NotesApp/Services/SeedData.swift:13:19: error: call to main actor-isolated instance method 'createFolder(named:symbolName:)' in a synchronous nonisolated context
-/Users/runner/work/win-vm-/win-vm-/NotesApp/Services/SeedData.swift:87:30: error: call to main actor-isolated instance method 'createNote(title:document:folder:tags:now:)' in a synchronous nonisolated context
-/Users/runner/work/win-vm-/win-vm-/NotesApp/Services/SeedData.swift:90:52: error: call to main actor-isolated instance method 'tag(named:)' in a synchronous nonisolated context
-/Users/runner/work/win-vm-/win-vm-/NotesApp/Services/SeedData.swift:92:15: error: call to main actor-isolated instance method 'persist()' in a synchronous nonisolated context
 ```
 
 ## Build warnings
 ```
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/App/RootView.swift:26:29: warning: will never be executed
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesApp/DeviceFeatures/AudioRecorder.swift:49:99: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+/Users/runner/work/win-vm-/win-vm-/NotesAppTests/ContentAndPersistenceTests.swift:201:22: warning: no 'async' operations occur within 'await' expression
+/Users/runner/work/win-vm-/win-vm-/NotesAppTests/ContentAndPersistenceTests.swift:205:23: warning: no 'async' operations occur within 'await' expression
+2026-11-21 03:46:46.082 appintentsmetadataprocessor[4396:17166] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
 ```
