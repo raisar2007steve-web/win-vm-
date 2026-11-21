@@ -2,6 +2,7 @@ import Foundation
 
 /// Sample content used by SwiftUI previews, UI tests and the screenshot pipeline.
 /// Never seeded automatically in a normal first launch.
+@MainActor
 enum SeedData {
     static func makeDefaultFolders(in store: NoteStore) -> [Folder] {
         let names: [(String, String)] = [
